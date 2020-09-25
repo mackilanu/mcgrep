@@ -1,7 +1,6 @@
 use std::error::Error;
 use std::fs;
 
-
 pub struct Config {
     pub query: String,
     pub filename: String,
