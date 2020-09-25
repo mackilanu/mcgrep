@@ -26,7 +26,6 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
         println!("{}", line);
     }
 
-    
     Ok(())
 }
 
@@ -56,6 +55,5 @@ Pick three.";
 
         assert_eq!(vec!["safe, fast, productive."], search(query, contents));
     }
-
 }
 
