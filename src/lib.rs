@@ -1,3 +1,5 @@
+//! # minigrep
+//! `minigrep` is a clone of the popular `grep` program found in unix-like environments.
 use std::error::Error;
 use std::fs;
 use std::env;
@@ -48,6 +50,19 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+/// Searches a file for matches.
+/// # Examples
+///
+/// ```
+///     let search_data = "\
+/// Foo
+/// Bar
+/// Foobar";
+///
+///     let lines = minigrep::search("Foo", &search_data);
+///     assert_eq!(lines[0], "Foo");
+///     assert_eq!(lines[1], "Foobar");
+/// ```
 pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     contents
         .lines()
@@ -55,42 +70,23 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
         .collect()
 }
 
+
+/// Searches a file for matches, but case insensitive.
+/// # Examples
+///
+/// ```
+///     let search_data = "\
+/// foo
+/// Bar
+/// Foobar";
+///
+///     let lines = minigrep::search_case_insensitive("foo", &search_data);
+///     assert_eq!(lines[0], "foo");
+///     assert_eq!(lines[1], "Foobar");
+/// ```
 pub fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> { 
     contents
         .lines()
         .filter(|line| line.to_lowercase().contains(query))
         .collect()
-}
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn case_sensitive() {
-        let query = "duct";
-        let contents = "\
-Rust:
-safe, fast, productive.
-Pick three.
-Duct tape.";
-
-        assert_eq!(vec!["safe, fast, productive."], search(query, contents));
-    }
-
-    #[test]
-    fn case_insensitive() {
-        let query = "rUsT";
-
-        let contents = "\
-Rust:
-safe, fast, productive.
-Pick three.
-Trust me.";
-
-        assert_eq! (
-            vec!["Rust:", "Trust me."], 
-            search_case_insensitive(query, contents)
-        );
-    }
 }

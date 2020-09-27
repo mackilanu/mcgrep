@@ -1,5 +1,6 @@
 [package]
 name = "minigrep"
+license = "MIT"
 version = "0.1.0"
 authors = ["Marcus Andersson <marcus@tojoma.se>"]
 edition = "2018"
