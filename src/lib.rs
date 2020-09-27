@@ -1,5 +1,5 @@
-//! # minigrep
-//! `minigrep` is a clone of the popular `grep` program found in unix-like environments.
+//! # mcgrep
+//! `mcgrep` is a clone of the popular `grep` program found in unix-like environments.
 use std::error::Error;
 use std::fs;
 use std::env;
@@ -59,7 +59,7 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 /// Bar
 /// Foobar";
 ///
-///     let lines = minigrep::search("Foo", &search_data);
+///     let lines = mcgrep::search("Foo", &search_data);
 ///     assert_eq!(lines[0], "Foo");
 ///     assert_eq!(lines[1], "Foobar");
 /// ```
@@ -80,7 +80,7 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
 /// Bar
 /// Foobar";
 ///
-///     let lines = minigrep::search_case_insensitive("foo", &search_data);
+///     let lines = mcgrep::search_case_insensitive("foo", &search_data);
 ///     assert_eq!(lines[0], "foo");
 ///     assert_eq!(lines[1], "Foobar");
 /// ```

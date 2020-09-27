@@ -1,7 +1,7 @@
 use std::env;
 use std::process;
 
-use minigrep::Config;
+use mcgrep::Config;
 
 fn main() {
 
@@ -10,7 +10,7 @@ fn main() {
         process::exit(1);
     });
 
-    if let Err(e) = minigrep::run(config) {
+    if let Err(e) = mcgrep::run(config) {
         eprintln!("Application error: {}", e);
         process::exit(1);
     }
